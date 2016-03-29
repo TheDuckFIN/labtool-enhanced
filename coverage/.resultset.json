@@ -1,0 +1,28 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/home/vlakanie/GitHub/labtool-enhanced/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/helpers/homepages_helper.rb": [
+        1,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/controllers/homepages_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1459257740
+  }
+}

@@ -34,6 +34,10 @@ gem 'bootstrap-sass'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :test do
+  gem 'simplecov', require: false
+end
+
 group :development, :test do
   gem 'sqlite3'
 
