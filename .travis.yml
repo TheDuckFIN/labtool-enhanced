@@ -1,10 +1,16 @@
 language: ruby
-
 rvm:
- - 2.3.0
-
+- 2.3.0
 script:
- - bundle exec rake db:migrate --trace
- - RAILS_ENV=test bundle exec rake db:migrate --trace
- - bundle exec rake db:test:prepare
- - bundle exec rspec -fd spec/
+- bundle exec rake db:migrate --trace
+- RAILS_ENV=test bundle exec rake db:migrate --trace
+- bundle exec rake db:test:prepare
+- bundle exec rspec -fd spec/
+deploy:
+  provider: heroku
+  api_key:
+    secure: mTMSGkuIa0jgp6dmo0qK9s/bH/rcRGLHggyrC2y++ggReVZXMMyfFeFIw+WnVTyH0YKHcjtyRl+54/104JOwnN5g65TbW3OMj1UIpZNaICDsdhIXn4sFoGyvbReq6ZOExAfv0Qix47hnznSmQnLNWgWN4YeozumIKnLohATO58m2hezPloD+UUDp3Ny2Sb7QPL9VUkIVzRFs4yXpjSKDwLX2M9HWSpVCef7DU7ZpmH86tkGyw3dBVZHq0ipwHryJEYQ/wWjAZqmUXb4/mBx4f7MPZEoowEbYk0st8gs9mIYJ+cwMQyeBjBwaMXtr6ASlfPby+h+PsONgKwdz+ldXa14UJ+ipN0qVIocD29ovnlEXadfwUwF1sJMQ+v+oh9zfEgH6gsV7iVLHgNf50iAgbEMHdchZu8qwCg97p8WOj7pHkujuAPDKxI7UgKmbgWJArNAcO2eOc4Gi3c06zLN+4sMVaA63ry/rcJQRjRee38dx0kq4Vp1BqpWG3ptgwkTNaI6TcsF2KN3CIJx4ObvoMWQNjWCGx4cCiZ7s5maU7dzPGLlQfrycX1Z+PPwyX0U8SEGxeVKUxc/SfL1voKmHrNBdt21G3BMYHOWuvPant9EHLzANPW6UnC9LYikS8z94yyKS+9IBHIn4+qdO6bHFSuSxy78BuWa3pEmD6SBAevo=
+  run: "rake db:migrate"
+  app: labtool
+  on:
+    repo: TheDuckFIN/labtool-enhanced
