@@ -5,9 +5,8 @@ class HomepagesController < ApplicationController
       @user = User.new
       render 'nologin'
     else
-      @active_courses = Course.active
-      @finished_courses = Course.finished
-      @personal_courses = @user.courses
+      @active_courses = @user.courses.active
+      @finished_courses = @user.courses.finished
       render 'index'
     end
   end

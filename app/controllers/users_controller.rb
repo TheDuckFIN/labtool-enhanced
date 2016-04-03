@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show]
+  before_action :ensure_that_logged_in, except: [:new, :create]
 
   def new
     @user = User.new

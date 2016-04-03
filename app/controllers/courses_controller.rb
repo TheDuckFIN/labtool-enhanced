@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
-
   before_action :set_course, only: [:show]
+  before_action :ensure_that_logged_in
 
   def index
     @courses = Course.all
