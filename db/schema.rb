@@ -11,15 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160403124046) do
+ActiveRecord::Schema.define(version: 20160403170803) do
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
     t.string   "description"
     t.boolean  "active"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "irc_channel"
+    t.boolean  "registeration_open"
+    t.integer  "leader_id"
   end
+
+  add_index "courses", ["leader_id"], name: "index_courses_on_leader_id"
 
   create_table "participations", force: :cascade do |t|
     t.integer  "user_id"

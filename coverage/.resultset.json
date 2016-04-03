@@ -9,6 +9,14 @@
         1,
         null
       ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/helpers/sessions_helper.rb": [
+        1,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/helpers/users_helper.rb": [
+        1,
+        null
+      ],
       "/home/vlakanie/GitHub/labtool-enhanced/app/controllers/homepages_controller.rb": [
         1,
         1,
@@ -20,9 +28,103 @@
         null,
         null,
         1,
+        null,
+        1,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/controllers/sessions_controller.rb": [
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/controllers/users_controller.rb": [
+        1,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/models/course.rb": [
+        1,
+        null,
+        1,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/models/participation.rb": [
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/home/vlakanie/GitHub/labtool-enhanced/app/models/user.rb": [
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
         null
       ]
     },
-    "timestamp": 1459257740
+    "timestamp": 1459701653
   }
 }
