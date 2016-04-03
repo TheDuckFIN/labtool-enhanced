@@ -1,0 +1,5 @@
+<%= form_tag session_path, class:"login-form" do %>
+    <%= text_field_tag :username, params[:username], class:"form-control", placeholder:"Username" %>
+    <%= password_field_tag :password, params[:password], class:"form-control", placeholder:"Password" %>
+    <%= submit_tag "Log in", class:"btn btn-primary btn-block" %>
+<% end %>

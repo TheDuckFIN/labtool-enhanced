@@ -1,0 +1,19 @@
+<h2>Courses</h2>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Course leader</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, course %></td>
+        <td><%= link_to course.leader.format_name, course.leader %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

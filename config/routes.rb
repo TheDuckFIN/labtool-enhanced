@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
   resources :users
+  resources :courses
 
   resource :session, only: [:new, :create, :destroy]
 
   get 'home', to: 'homepages#index'
+  get 'login', to: 'sessions#new'
+  get 'register', to: 'users#new'
 
   root 'homepages#index'
 

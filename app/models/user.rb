@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 }
   validates :email, presence: true
 
+  def format_name
+    return self.username if self.realname.nil?
+    "#{self.realname} (#{self.username})"
+  end
+
 end

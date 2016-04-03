@@ -10,4 +10,7 @@ class Course < ActiveRecord::Base
 
   belongs_to :leader, foreign_key: 'leader_id', class_name: 'User'
 
+  scope :active, -> { where active:true }
+  scope :finished, -> { where active:[nil, false] }
+
 end
