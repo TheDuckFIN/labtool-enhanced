@@ -22,5 +22,15 @@ module LabtoolEnhanced
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      if html_tag.include? "<label for"
+        html = "#{html_tag} <span style=\"color: #ff0000; font-weight: bold\">#{instance.error_message.join(", ")}</span>".html_safe
+      else
+        html = html_tag
+      end
+
+      html
+    }
   end
 end
