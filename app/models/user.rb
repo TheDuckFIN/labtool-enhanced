@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: { case_sensitive: false }, length: { minimum: 3, maximum: 20 }
   validates :password, length: { minimum: 8 }
   validates :email, presence: true
+  validates :student_number, format: { with: /\A0\d{8}\z/, message: 'is invalid (must be 9 digits and start with 0)' }
 
   def format_name(both)
     return self.username if self.realname.nil? || self.realname.empty?
