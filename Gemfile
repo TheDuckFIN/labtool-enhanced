@@ -36,6 +36,12 @@ gem 'bootstrap-sass'
 
 group :test do
   gem 'simplecov', require: false
+
+  gem 'factory_girl_rails'
+
+  gem 'capybara'
+
+  gem 'launchy'
 end
 
 group :development, :test do
