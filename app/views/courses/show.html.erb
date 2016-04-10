@@ -1,1 +1,18 @@
 <h2><%= @course.name %></h2>
+
+<p>
+  Leader: <%= link_to @course.leader.username, @course.leader %><br />
+  IRC channel: <%= @course.irc_channel %><br />
+  Default codereview group: <%= @course.default_codereview_group %><br />
+  Current week: <%= @course.current_week %><br />
+  Active: <%= @course.active? %><br />
+  Registeration open: <%= @course.registeration_open? %>
+</p>
+
+<h3>All weeks:</h3>
+
+<p>
+  <% @course.weeks.each do |week| %>
+    <%= week %><br />
+  <% end %>
+</p>

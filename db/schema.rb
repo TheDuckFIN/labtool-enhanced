@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160410180621) do
+ActiveRecord::Schema.define(version: 20160410182923) do
 
   create_table "codereview_groups", force: :cascade do |t|
     t.integer  "course_id"
@@ -24,12 +24,13 @@ ActiveRecord::Schema.define(version: 20160410180621) do
     t.string   "name"
     t.string   "description"
     t.boolean  "active"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "irc_channel"
     t.boolean  "registeration_open"
     t.integer  "leader_id"
     t.integer  "current_week_id"
+    t.integer  "default_codereview_group_id"
   end
 
   add_index "courses", ["leader_id"], name: "index_courses_on_leader_id"

@@ -13,5 +13,6 @@ FactoryGirl.define do
     description 'asd'
     active true
     registeration_open true
+    week_count 5
   end
 end
