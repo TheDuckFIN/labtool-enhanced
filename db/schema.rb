@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160407133227) do
+ActiveRecord::Schema.define(version: 20160410180621) do
+
+  create_table "codereview_groups", force: :cascade do |t|
+    t.integer  "course_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "courses", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +29,7 @@ ActiveRecord::Schema.define(version: 20160407133227) do
     t.string   "irc_channel"
     t.boolean  "registeration_open"
     t.integer  "leader_id"
+    t.integer  "current_week_id"
   end
 
   add_index "courses", ["leader_id"], name: "index_courses_on_leader_id"
@@ -30,8 +38,12 @@ ActiveRecord::Schema.define(version: 20160407133227) do
     t.integer  "user_id"
     t.integer  "course_id"
     t.boolean  "teacher"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.boolean  "active"
+    t.string   "topic"
+    t.string   "repository"
+    t.integer  "codereview_group_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -44,6 +56,15 @@ ActiveRecord::Schema.define(version: 20160407133227) do
     t.string   "email"
     t.string   "irc_nick"
     t.string   "student_number"
+  end
+
+  create_table "weeks", force: :cascade do |t|
+    t.integer  "course_id"
+    t.integer  "number"
+    t.integer  "max_points"
+    t.boolean  "code_review"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

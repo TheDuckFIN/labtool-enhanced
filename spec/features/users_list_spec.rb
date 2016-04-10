@@ -4,7 +4,7 @@ describe 'users list page' do
   before :each do
     FactoryGirl.create :user
     FactoryGirl.create :user, username:'Asdffsdf'
-    
+
     visit login_path
     fill_in 'username', with:'vlakanie'
     fill_in 'password', with:'lollero1'

@@ -13,4 +13,8 @@ class ApplicationController < ActionController::Base
   def ensure_that_logged_in
     redirect_to login_path, alert: 'You have to login first before accessing this content!' if current_user.nil?
   end
+
+  def ensure_that_admin
+    redirect_to :root, alert: 'You need admin access to do that!' unless current_user.admin?
+  end
 end

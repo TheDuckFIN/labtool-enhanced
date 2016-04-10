@@ -19,4 +19,8 @@ class User < ActiveRecord::Base
     self.realname
   end
 
+  def is_teacher(course)
+    byebug
+  end
+
 end
