@@ -4,7 +4,7 @@ class CoursesController < ApplicationController
   before_action :ensure_that_admin, only: [:new, :create]
 
   def index
-    @courses = Course.all
+    @courses = Course.active.all
   end
 
   def show

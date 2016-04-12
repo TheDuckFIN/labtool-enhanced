@@ -30,10 +30,3 @@ describe 'Login system' do
     expect(page).to have_content 'Logged out successfully!'
   end
 end
-
-def login(username, password)
-  visit login_path
-  fill_in 'username', with:username
-  fill_in 'password', with:password
-  click_button 'Log in'
-end

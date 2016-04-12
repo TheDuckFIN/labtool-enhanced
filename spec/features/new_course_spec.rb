@@ -7,7 +7,7 @@ describe 'creating a new course' do
   end
 
   it 'is successful when user is admin and information is correct' do
-    login_with_username('vlakanie')
+    login('vlakanie', 'lollero1')
 
     visit new_course_path
 
@@ -23,7 +23,7 @@ describe 'creating a new course' do
   end
 
   it 'is unsuccessful when the user is admin and information is incorrect' do
-    login_with_username('vlakanie')
+    login('vlakanie', 'lollero1')
 
     visit new_course_path
 
@@ -40,17 +40,10 @@ describe 'creating a new course' do
   end
 
   it 'is unsuccessful when user is not admin' do
-    login_with_username('tavis')
+    login('tavis', 'lollero1')
 
     visit new_course_path
 
     expect(page).to have_content 'You need admin access to do that!'
   end
-end
-
-def login_with_username(username)
-  visit login_path
-  fill_in 'username', with:username
-  fill_in 'password', with:'lollero1'
-  click_button 'Log in'
 end

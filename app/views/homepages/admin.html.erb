@@ -1,0 +1,51 @@
+<h2>Hello, <%= @user.format_name false %></h2>
+
+<h3>Managed courses</h3>
+<% if @active_courses.empty? %>
+  No courses!
+<% else %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-xs-4">Name</th>
+      <th class="col-xs-4">Current week</th>
+      <th class="col-xs-4">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @active_courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.name, course %></td>
+          <td><%= course.current_week %></td>
+          <td><%= link_to 'Delete', course, method: :delete, class:'btn btn-xs btn-danger' %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<h3>Finished courses managed by me</h3>
+<% if @finished_courses.empty? %>
+    No courses!
+<% else %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-xs-8">Name</th>
+      <th class="col-xs-4">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @finished_courses.each do |course| %>
+        <tr>
+          <td><%= link_to course.name, course %></td>
+          <td><%= link_to 'Activate', course, class:'btn btn-xs btn-primary' %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<%= link_to 'Create a new course', new_course_path, class:'btn btn-success' %>
