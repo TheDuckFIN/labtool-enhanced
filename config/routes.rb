@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :users
-  resources :courses
+  resources :courses do
+    get 'join', on: :member
+  end
+
+  resources :participations, only: [:create, :update, :destroy]
 
   resource :session, only: [:new, :create, :destroy]
 

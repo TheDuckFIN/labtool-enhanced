@@ -8,7 +8,7 @@
 <% end %>
 
 <h3>Past courses</h3>
-<% if @active_courses.empty? %>
+<% if @finished_courses.empty? %>
   You haven't finished any courses!
 <% else %>
   <%= render 'courses', courses: @finished_courses %>
