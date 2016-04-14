@@ -14,6 +14,17 @@ class ParticipationsController < ApplicationController
     end
   end
 
+  def destroy
+    participation = Participation.where course_id: params[:id], user: current_user
+
+    if participation.any?
+      participation.first.destroy
+      redirect_to :back, notice: 'Successfully left course!'
+    else
+      redirect_to :root, danger: 'Something failed miserably!'
+    end
+  end
+
   def update
 
   end

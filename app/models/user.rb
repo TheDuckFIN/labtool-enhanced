@@ -22,4 +22,8 @@ class User < ActiveRecord::Base
     byebug
   end
 
+  def is_participating(course)
+    Participation.where(course:course, user:self).any?
+  end
+
 end

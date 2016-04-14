@@ -17,4 +17,30 @@
   <% end %>
 </p>
 
-<%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+<h3>Participants</h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="col-xs-2">Student</th>
+    <th class="col-xs-4">Topic</th>
+    <th class="col-xs-6">Repository</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @course.participations.each do |participation| %>
+      <tr>
+        <td><%= link_to participation.user.username, participation.user %></td>
+        <td><%= participation.topic %></td>
+        <td><%= link_to participation.repository, participation.repository %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user.is_participating @course %>
+  <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
+<% else %>
+  <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+<% end %>

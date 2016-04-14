@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 # Bootstrap
 gem 'bootstrap-sass'
 
+gem 'validate_url'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
