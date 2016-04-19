@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'Controller pages' do
+describe 'Courses' do
   before :each do
-    @user = FactoryGirl.create :user
-    @course = FactoryGirl.create :course, leader: @user
+    user = FactoryGirl.create :user, username:'vlakanie'
+    @course = FactoryGirl.create :course, name:'tsoha', leader: user
 
     visit login_path
     fill_in 'username', with:'vlakanie'
@@ -11,14 +11,14 @@ describe 'Controller pages' do
     click_button 'Log in'
   end
 
-  it 'courses list page lists all courses' do
+  it 'in listing page all active courses are shown' do
     visit courses_path
 
     expect(page).to have_content 'tsoha'
     expect(page).to have_content 'vlakanie'
   end
 
-  it 'single course page shows course info' do
+  it 'page shows course info' do
     visit course_path(@course)
 
     expect(page).to have_content 'tsoha'

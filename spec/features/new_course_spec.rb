@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'creating a new course' do
   before :each do
-    FactoryGirl.create :user
-    FactoryGirl.create :user, username:'tavis', admin:false
+    FactoryGirl.create :admin, username: 'vlakanie'
+    FactoryGirl.create :user, username: 'tavis'
   end
 
   it 'is successful when user is admin and information is correct' do

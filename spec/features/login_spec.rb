@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Login system' do
   before :each do
-    FactoryGirl.create :user
+    FactoryGirl.create :user, username:'vlakanie'
   end
 
   it 'when logging in with correct credentials, login is successful' do

@@ -20,8 +20,6 @@ class ParticipationsController < ApplicationController
     if participation.any?
       participation.first.destroy
       redirect_to :back, notice: 'Successfully left course!'
-    else
-      redirect_to :root, danger: 'Something failed miserably!'
     end
   end
 

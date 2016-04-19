@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'users list page' do
   before :each do
-    FactoryGirl.create :user
+    FactoryGirl.create :user, username:'vlakanie'
     FactoryGirl.create :user, username:'Asdffsdf'
 
     visit login_path
