@@ -18,12 +18,16 @@ class User < ActiveRecord::Base
     self.realname
   end
 
-  def is_teacher(course)
-    byebug
+  def is_teacher?(course)
+    Participation.where(course:course, user:self, teacher:true).any?
   end
 
-  def is_participating(course)
-    Participation.where(course:course, user:self).any?
+  def is_leader?(course)
+    self == course.leader
+  end
+
+  def is_participant?(course)
+    Participation.where(course:course, user:self, teacher:[nil, false]).any?
   end
 
 end
