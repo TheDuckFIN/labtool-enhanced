@@ -1,76 +1,98 @@
-<h2><%= @course.name %></h2>
+<h1>
+  <%= @course.name %>
+  <small>
+    <% if @course.registeration_open? %>
+        <span class="label label-success">Registeration open</span>
+    <% end %>
 
-<p>
-  Leader: <%= link_to @course.leader.username, @course.leader %><br />
-  IRC channel: <%= @course.irc_channel %><br />
-  Default codereview group: <%= @course.default_codereview_group %><br />
-  Current week: <%= @course.current_week %><br />
-  Active: <%= @course.active? %><br />
-  Registeration open: <%= @course.registeration_open? %>
-</p>
+    <% if not @course.active? %>
+        <span class="label label-danger">Completed</span>
+    <% end %>
+  </small>
+</h1>
 
-<!--
-<h3>All weeks:</h3>
+<div class="tabs">
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#">Home</a></li>
+    <li><a href="#">Tab 1</a></li>
+    <li><a href="#">Tab 2</a></li>
+    <li><a href="#">Tab 3</a></li>
+  </ul>
+</div>
 
-<p>
-  <#% @course.weeks.each do |week| %>
-    <#%= week %><br />
-  <#% end %>
-</p>
+<div class="course_container">
+  <p>
+    Leader: <%= link_to @course.leader.username, @course.leader %><br />
+    IRC channel: <%= @course.irc_channel %><br />
+    Default codereview group: <%= @course.default_codereview_group %><br />
+    Current week: <%= @course.current_week %><br />
+    Active: <%= @course.active? %><br />
+    Registeration open: <%= @course.registeration_open? %>
+  </p>
 
--->
+  <!--
+  <h3>All weeks:</h3>
 
-<% if current_user.is_teacher? @course or current_user.is_leader? @course %>
+  <p>
+    <#% @course.weeks.each do |week| %>
+      <#%= week %><br />
+    <#% end %>
+  </p>
 
-  <h3>Participants</h3>
+  -->
 
-  <table class="table table-striped">
-    <thead>
-    <tr>
-      <th class="col-xs-2">Student</th>
-      <th class="col-xs-4">Topic</th>
-      <th class="col-xs-6">Repository</th>
-    </tr>
-    </thead>
+  <% if current_user.is_teacher? @course or current_user.is_leader? @course %>
 
-    <tbody>
-      <% @course.participations.each do |participation| %>
-        <tr>
-          <td><%= link_to participation.user.username, participation.user %></td>
-          <td><%= participation.topic %></td>
-          <td><%= link_to participation.repository, participation.repository %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <h3>Participants</h3>
 
-<% end %>
-
-<% if current_user.is_participant? @course %>
-  <table class="table table-bordered">
-    <thead>
+    <table class="table table-striped">
+      <thead>
       <tr>
-        <% @course.week_numbers.each do |week_number| %>
-          <th class="col-xs-1"><%= week_number %></th>
-        <% end %>
+        <th class="col-xs-2">Student</th>
+        <th class="col-xs-4">Topic</th>
+        <th class="col-xs-6">Repository</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <% current_user.points_for_course(@course).each do |submission| %>
-            <td><%= submission %></td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
-<% end %>
+      </thead>
 
-<% unless current_user.is_leader? @course or current_user.is_teacher? @course %>
-  <br />
+      <tbody>
+        <% @course.participations.each do |participation| %>
+          <tr>
+            <td><%= link_to participation.user.username, participation.user %></td>
+            <td><%= participation.topic %></td>
+            <td><%= link_to participation.repository, participation.repository %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  <% end %>
 
   <% if current_user.is_participant? @course %>
-    <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
-  <% else %>
-    <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <% @course.week_numbers.each do |week_number| %>
+            <th class="col-xs-1"><%= week_number %></th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% current_user.points_for_course(@course).each do |submission| %>
+              <td><%= submission %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
   <% end %>
-<% end %>
+
+  <% unless current_user.is_leader? @course or current_user.is_teacher? @course %>
+    <br />
+
+    <% if current_user.is_participant? @course %>
+      <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
+    <% else %>
+      <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+    <% end %>
+  <% end %>
+</div>
