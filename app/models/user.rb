@@ -30,4 +30,21 @@ class User < ActiveRecord::Base
     Participation.where(course:course, user:self, teacher:[nil, false]).any?
   end
 
+  def points_for_course(course)
+    points = Array.new
+    participation = Participation.where user:self, course:course
+
+    course.real_weeks.each do |week|
+      submission = WeeklySubmission.where participation:participation, week:week
+
+      if submission.any?
+        points << "#{submission.first.points} / #{week.max_points}"
+      else
+        points << "- / #{week.max_points}"
+      end
+    end
+
+    points
+  end
+
 end

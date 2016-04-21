@@ -5,6 +5,8 @@ class Course < ActiveRecord::Base
   has_many :weeks, dependent: :destroy
   has_one :current_week, class_name: 'Week'
 
+  has_many :real_weeks, -> { where.not number:0 }, class_name: 'Week'
+
   has_many :codereview_groups, dependent: :destroy
   has_one :default_codereview_group, class_name: 'CodereviewGroup'
 
@@ -24,11 +26,9 @@ class Course < ActiveRecord::Base
   validates :week_count, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }
   validates :name, presence: true
 
-  def user_submission(user, week)
-    participation = Participation.where user:user, course:self
-    submission = WeeklySubmission.where week:week, participation:participation
-    return submission.first if submission.any?
-    nil
+  def week_numbers
+    weeks = Week.where(course: self).count - 1
+    (1..weeks).to_a
   end
 
 end

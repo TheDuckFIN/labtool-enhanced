@@ -50,20 +50,15 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <% @course.weeks.each do |week| %>
-          <% if week.number != 0 %>
-            <th class="col-xs-1"><%= week.number %></th>
-          <% end %>
+        <% @course.week_numbers.each do |week_number| %>
+          <th class="col-xs-1"><%= week_number %></th>
         <% end %>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <% @course.weeks.each do |week| %>
-          <% if week.number != 0 %>
-            <% submission = @course.user_submission current_user, week %>
-            <td><%= submission || '-' %></td>
-          <% end %>
+        <% current_user.points_for_course(@course).each do |submission| %>
+            <td><%= submission %></td>
         <% end %>
       </tr>
     </tbody>
