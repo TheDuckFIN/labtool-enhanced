@@ -11,23 +11,24 @@
   </small>
 </h1>
 
-<div class="tabs">
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#">Home</a></li>
-    <li><a href="#">Tab 1</a></li>
-    <li><a href="#">Tab 2</a></li>
-    <li><a href="#">Tab 3</a></li>
-  </ul>
-</div>
+<% if current_user.is_leader? @course or current_user.is_teacher? @course %>
+  <div class="tabs">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Tab 1</a></li>
+      <li><a href="#">Tab 2</a></li>
+      <li><a href="#">Tab 3</a></li>
+    </ul>
+  </div>
+<% end %>
 
 <div class="course_container">
+  <h3>General info</h3>
   <p>
-    Leader: <%= link_to @course.leader.username, @course.leader %><br />
-    IRC channel: <%= @course.irc_channel %><br />
-    Default codereview group: <%= @course.default_codereview_group %><br />
-    Current week: <%= @course.current_week %><br />
-    Active: <%= @course.active? %><br />
-    Registeration open: <%= @course.registeration_open? %>
+    <b>Leader:</b> <%= link_to @course.leader.username, @course.leader %><br />
+    <b>IRC channel:</b> <%= @course.irc_channel %><br />
+    <b>Description:</b><br />
+    <%= @course.description %>
   </p>
 
   <!--
@@ -68,6 +69,8 @@
   <% end %>
 
   <% if current_user.is_participant? @course %>
+    <h3>Weekly points</h3>
+
     <table class="table table-bordered">
       <thead>
         <tr>
