@@ -47,15 +47,35 @@
 <% end %>
 
 <% if current_user.is_participant? @course %>
-
-  <% @course.weeks.each do |week| %>
-    <%= week %><br />
-  <% end %>
-
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <% @course.weeks.each do |week| %>
+          <% if week.number != 0 %>
+            <th class="col-xs-1"><%= week.number %></th>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @course.weeks.each do |week| %>
+          <% if week.number != 0 %>
+            <% submission = @course.user_submission current_user, week %>
+            <td><%= submission || '-' %></td>
+          <% end %>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
 <% end %>
 
-<% if current_user.is_participant? @course %>
-  <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
-<% else %>
-  <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+<% unless current_user.is_leader? @course or current_user.is_teacher? @course %>
+  <br />
+
+  <% if current_user.is_participant? @course %>
+    <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
+  <% else %>
+    <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
+  <% end %>
 <% end %>

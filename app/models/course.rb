@@ -24,4 +24,11 @@ class Course < ActiveRecord::Base
   validates :week_count, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }
   validates :name, presence: true
 
+  def user_submission(user, week)
+    participation = Participation.where user:user, course:self
+    submission = WeeklySubmission.where week:week, participation:participation
+    return submission.first if submission.any?
+    nil
+  end
+
 end
