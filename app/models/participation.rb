@@ -9,6 +9,6 @@ class Participation < ActiveRecord::Base
   validates :repository, :topic, presence: true, unless: 'teacher?'
   validates :user_id, uniqueness: { scope: :course_id }
 
-  validates :repository, url: true
+  validates :repository, url: true, unless: 'teacher?'
 
 end

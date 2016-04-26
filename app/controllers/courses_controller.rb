@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_course, only: [:show, :join, :edit, :update, :codereviews, :weeklysubmissions]
   before_action :ensure_that_logged_in
-  before_action :ensure_that_admin, only: [:new, :create]
+  before_action :ensure_that_admin, only: [:new, :create, :codereviews, :weeklysubmissions, :update, :edit, :addteacher]
 
   def index
     @courses = Course.active.all
@@ -10,10 +10,10 @@ class CoursesController < ApplicationController
   def addteacher
     part = Participation.new course_id:params[:course_id], user_id:params[:user_id], teacher:true
 
-    byebug
-
     if part.save
       redirect_to :back, notice:'Added teacher successfully!'
+    else
+      redirect_to :back, danger:'Teacher adding failed! Issue bug report!'
     end
   end
 
