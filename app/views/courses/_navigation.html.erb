@@ -19,13 +19,24 @@
             <span class="glyphicon glyphicon-home"></span> Main
           </a>
         </li>
+
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-check"></span> Weekly submissions
+          </a>
+        </li>
+
+        <li>
+          <a href="#">
+            <span class="glyphicon glyphicon-eye-open"></span> Code reviews
+          </a>
+        </li>
+
         <li <%= 'class="active"'.html_safe if current_page? action: 'edit' %>>
           <a href="<%= edit_course_path @course %>">
             <span class="glyphicon glyphicon-cog"></span> Settings
           </a>
         </li>
-        <li><a href="#">Tab 2</a></li>
-        <li><a href="#">Tab 3</a></li>
       </ul>
     </div>
 <% end %>
