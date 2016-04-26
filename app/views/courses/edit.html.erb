@@ -3,3 +3,26 @@
 <h3>General information</h3>
 
 <%= render 'form' %>
+
+<h3>Teachers</h3>
+
+<% if @course.teachers.any? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-xs-8">Student</th>
+      <th class="col-xs-4">Repository</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @course.teacher_participations.each do |participation| %>
+        <tr>
+          <td><%= participation.user.username %></td>
+          <td><%= link_to 'Remove teacher', participation, method: :delete, class:'btn btn-danger' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  This course has no assigned teachers!
+<% end %>

@@ -35,7 +35,7 @@
       </thead>
 
       <tbody>
-        <% @course.participations.each do |participation| %>
+        <% @course.student_participations.each do |participation| %>
           <tr>
             <td><%= link_to participation.user.username, participation.user %></td>
             <td><%= participation.topic %></td>

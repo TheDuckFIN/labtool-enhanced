@@ -15,15 +15,15 @@ class Course < ActiveRecord::Base
   has_many :teacher_participations, -> { where teacher: true }, class_name: 'Participation'
 
   has_many :users, through: :participations
-  has_many :students, through: :student_participations, class_name: 'User'
-  has_many :teachers, through: :teacher_participations, class_name: 'User'
+  has_many :students, through: :student_participations, source: :user
+  has_many :teachers, through: :teacher_participations, source: :user
 
   belongs_to :leader, foreign_key: 'leader_id', class_name: 'User'
 
   scope :active, -> { where active:true }
   scope :finished, -> { where active:[nil, false] }
 
-  validates :week_count, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }
+  validates :week_count, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 12 }, on: :create
   validates :name, presence: true
 
   def week_numbers
