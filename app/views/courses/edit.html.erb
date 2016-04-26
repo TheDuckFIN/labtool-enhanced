@@ -1,28 +1,64 @@
 <%= render 'navigation' %>
 
-<h3>General information</h3>
-
-<%= render 'form' %>
-
 <h3>Teachers</h3>
 
 <% if @course.teachers.any? %>
-  <table class="table table-striped">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th class="col-xs-8">Student</th>
+        <th class="col-xs-4">Repository</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @course.teacher_participations.each do |participation| %>
+          <tr>
+            <td><%= participation.user.username %></td>
+            <td><%= link_to 'Remove teacher', participation, method: :delete, class:'btn btn-danger' %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    This course has no assigned teachers!
+<% end %>
+
+<h3>Add teacher</h3>
+
+<div ng-controller="UserSearchController">
+  <input type="text" class="form-control" ng-model="searchText">
+
+  <span ng-show="!searchText.length">Type search keyword to search users</span>
+
+  <table class="table table-striped" ng-show="searchText.length">
     <thead>
     <tr>
-      <th class="col-xs-8">Student</th>
-      <th class="col-xs-4">Repository</th>
+      <th class="col-xs-2">Name</th>
+      <th class="col-xs-3">Real name</th>
+      <th class="col-xs-2">Irc nick</th>
+      <th class="col-xs-3">Email</th>
+      <th class="col-xs-2">Actions</th>
     </tr>
     </thead>
-    <tbody>
-      <% @course.teacher_participations.each do |participation| %>
-        <tr>
-          <td><%= participation.user.username %></td>
-          <td><%= link_to 'Remove teacher', participation, method: :delete, class:'btn btn-danger' %></td>
-        </tr>
-      <% end %>
-    </tbody>
+    <tr ng-repeat="user in filteredUsers = ( users | filter:searchText )">
+      <td>{{user.username}}</td>
+      <td>{{user.realname}}</td>
+      <td>{{user.irc_nick}}</td>
+      <td>{{user.email}}</td>
+      <td>
+        <%= form_tag(addteacher_course_path @course, method: 'post') do %>
+          <%= hidden_field_tag :course_id, @course.id %>
+          <input type="hidden" name="user_id" id="user_id" ng-value="user.id" />
+          <%= submit_tag 'Add teacher', class:'btn btn-xs btn-success' %>
+        <% end %>
+      </td>
+    </tr>
+    <tr ng-hide="filteredUsers.length">
+      <td>No results!</td>
+    </tr>
   </table>
-<% else %>
-  This course has no assigned teachers!
-<% end %>
+</div>
+
+<h3>General information</h3>
+
+<%= render 'form' %>

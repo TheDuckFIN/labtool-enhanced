@@ -1,6 +1,7 @@
 class ParticipationsController < ApplicationController
   before_action :ensure_that_logged_in
 
+
   def create
     @participation = Participation.new(participation_params)
     @participation.user = current_user

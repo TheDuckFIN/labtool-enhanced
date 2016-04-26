@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :join, :edit, :update]
+  before_action :set_course, only: [:show, :join, :edit, :update, :codereviews, :weeklysubmissions]
   before_action :ensure_that_logged_in
   before_action :ensure_that_admin, only: [:new, :create]
 
@@ -7,10 +7,29 @@ class CoursesController < ApplicationController
     @courses = Course.active.all
   end
 
+  def addteacher
+    part = Participation.new course_id:params[:course_id], user_id:params[:user_id], teacher:true
+
+    byebug
+
+    if part.save
+      redirect_to :back, notice:'Added teacher successfully!'
+    end
+  end
+
+
   def show
   end
 
   def edit
+  end
+
+  def codereviews
+
+  end
+
+  def weeklysubmissions
+
   end
 
   def update

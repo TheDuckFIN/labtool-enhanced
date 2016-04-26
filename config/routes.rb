@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :users
   resources :courses do
     get 'join', on: :member
+    get 'codereviews', on: :member
+    get 'weeklysubmissions', on: :member
+    post 'addteacher', on: :member
   end
 
   resources :participations, only: [:create, :update, :destroy]

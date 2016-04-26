@@ -30,6 +30,8 @@ gem 'bootstrap-sass'
 
 gem 'validate_url'
 
+gem 'angularjs-rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

@@ -6,7 +6,7 @@ class Participation < ActiveRecord::Base
 
   has_many :weekly_submissions
 
-  validates :repository, :topic, presence: true, unless: 'teacher == true'
+  validates :repository, :topic, presence: true, unless: 'teacher?'
   validates :user_id, uniqueness: { scope: :course_id }
 
   validates :repository, url: true
