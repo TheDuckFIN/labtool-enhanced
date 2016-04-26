@@ -1,26 +1,5 @@
-<h1>
-  <%= @course.name %>
-  <small>
-    <% if @course.registeration_open? %>
-        <span class="label label-success">Registeration open</span>
-    <% end %>
+<%= render 'navigation' %>
 
-    <% if not @course.active? %>
-        <span class="label label-danger">Completed</span>
-    <% end %>
-  </small>
-</h1>
-
-<% if current_user.is_leader? @course or current_user.is_teacher? @course %>
-  <div class="tabs">
-    <ul class="nav nav-tabs">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Tab 1</a></li>
-      <li><a href="#">Tab 2</a></li>
-      <li><a href="#">Tab 3</a></li>
-    </ul>
-  </div>
-<% end %>
 
 <div class="course_container">
   <h3>General info</h3>

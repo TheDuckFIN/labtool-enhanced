@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :join]
+  before_action :set_course, only: [:show, :join, :edit, :update]
   before_action :ensure_that_logged_in
   before_action :ensure_that_admin, only: [:new, :create]
 
@@ -8,6 +8,17 @@ class CoursesController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
+    if @course.update(course_params)
+      redirect_to @course, notice: 'Course updated successfully'
+    else
+      render 'edit'
+    end
   end
 
   def join

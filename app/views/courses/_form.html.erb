@@ -1,0 +1,27 @@
+<%= form_for @course do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :irc_channel %>
+    <%= f.text_field :irc_channel, class:"form-control" %>
+  </div>
+
+  <% if @course.new_record? %>
+    <div class="form-group">
+      <%= f.label :week_count %>
+      <%= f.number_field :week_count, class:"form-control" %>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.submit class:"btn btn-success" %>
+  </div>
+<% end %>

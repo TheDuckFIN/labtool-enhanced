@@ -1,0 +1,31 @@
+<h1>
+  <%= @course.name %>
+  <small>
+    <% if @course.registeration_open? %>
+        <span class="label label-success">Registeration open</span>
+    <% end %>
+
+    <% if not @course.active? %>
+        <span class="label label-danger">Completed</span>
+    <% end %>
+  </small>
+</h1>
+
+<% if current_user.is_leader? @course or current_user.is_teacher? @course %>
+    <div class="tabs">
+      <ul class="nav nav-tabs">
+        <li <%= 'class="active"'.html_safe if current_page? action: 'show' %>>
+          <a href="<%= course_path @course %>">
+            <span class="glyphicon glyphicon-home"></span> Main
+          </a>
+        </li>
+        <li <%= 'class="active"'.html_safe if current_page? action: 'edit' %>>
+          <a href="<%= edit_course_path @course %>">
+            <span class="glyphicon glyphicon-cog"></span> Settings
+          </a>
+        </li>
+        <li><a href="#">Tab 2</a></li>
+        <li><a href="#">Tab 3</a></li>
+      </ul>
+    </div>
+<% end %>
