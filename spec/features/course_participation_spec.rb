@@ -55,7 +55,7 @@ describe 'Participations' do
 
     page.driver.browser.switch_to.alert.accept
 
-    expect(page).to have_content 'Successfully left course!'
+    expect(page).to have_content 'Successfully left the course!'
   end
 
 end

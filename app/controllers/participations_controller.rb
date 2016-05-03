@@ -1,6 +1,6 @@
 class ParticipationsController < ApplicationController
+  before_action :set_participation, only: :destroy
   before_action :ensure_that_logged_in
-
 
   def create
     @participation = Participation.new(participation_params)
@@ -16,11 +16,9 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
-    participation = Participation.where course_id: params[:id], user: current_user
-
-    if participation.any?
-      participation.first.destroy
-      redirect_to :back, notice: 'Successfully left course!'
+    if @participation and (@participation.user == current_user or current_user.admin?)
+      @participation.destroy
+      redirect_to :back, notice: @participation.teacher? ? 'Teacher removed successfully!' : 'Successfully left the course!'
     end
   end
 
@@ -32,6 +30,10 @@ class ParticipationsController < ApplicationController
 
     def participation_params
       params.require(:participation).permit(:course_id, :codereview_group_id, :repository, :topic)
+    end
+
+    def set_participation
+      @participation = Participation.find(params[:id])
     end
 
 end

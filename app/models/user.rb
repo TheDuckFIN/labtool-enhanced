@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   validates :student_number, format: { with: /\A0\d{8}\z/, message: 'is invalid (must be 9 digits and start with 0)' }
 
   def format_name(both)
-    return self.username if self.realname.nil? || self.realname.empty?
-    return "#{self.realname} (#{self.username})" if both
+    return username if realname.blank?
+    return "#{realname} (#{username})" if both
     self.realname
   end
 

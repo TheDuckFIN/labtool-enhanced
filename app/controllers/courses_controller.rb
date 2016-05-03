@@ -13,10 +13,9 @@ class CoursesController < ApplicationController
     if part.save
       redirect_to :back, notice:'Added teacher successfully!'
     else
-      redirect_to :back, danger:'Teacher adding failed! Issue bug report!'
+      redirect_to :back, alert:'Teacher adding failed! Issue bug report!'
     end
   end
-
 
   def show
   end
