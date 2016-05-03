@@ -19,11 +19,12 @@ class ParticipationsController < ApplicationController
     if @participation and (@participation.user == current_user or current_user.admin?)
       @participation.destroy
       redirect_to :back, notice: @participation.teacher? ? 'Teacher removed successfully!' : 'Successfully left the course!'
+    else
+      redirect_to :back, alert: 'No permission!'
     end
   end
 
   def update
-
   end
 
   private

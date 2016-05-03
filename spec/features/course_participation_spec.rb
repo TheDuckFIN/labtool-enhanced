@@ -6,7 +6,7 @@ describe 'Participations' do
     @course = FactoryGirl.create :course, name:'javalabra'
     FactoryGirl.create :user, username:'tavis'
 
-    login('tavis', 'lollero1')
+    login 'tavis', 'lollero1'
   end
 
   it 'joining course is successful with correct repository url and topic' do
