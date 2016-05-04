@@ -32,6 +32,8 @@ gem 'validate_url'
 
 gem 'angularjs-rails'
 
+gem 'coveralls', require: false
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
