@@ -1,0 +1,8 @@
+<%= render 'navigation' %>
+
+<% if @course.current_week.number == 0 %>
+  The course has not begun yet!<br /><br />
+  <%= link_to 'Begin course!', advance_week_course_path, method: :post, class: 'btn btn-success' %>
+<% else %>
+
+<% end %>

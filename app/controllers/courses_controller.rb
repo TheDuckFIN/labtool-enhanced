@@ -1,13 +1,13 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :join, :edit, :update, :codereviews, :weeklysubmissions]
+  before_action :set_course, only: [:show, :join, :edit, :update, :codereviews, :review_students, :advance_week]
   before_action :ensure_that_logged_in
-  before_action :ensure_that_admin, only: [:new, :create, :codereviews, :weeklysubmissions, :update, :edit, :addteacher]
+  before_action :ensure_that_admin, only: [:new, :create, :codereviews, :reviews_tudents, :update, :edit, :add_teacher, :advance_week]
 
   def index
     @courses = Course.active.all
   end
 
-  def addteacher
+  def add_teacher
     part = Participation.new course_id:params[:course_id], user_id:params[:user_id], teacher:true
 
     if part.save
@@ -17,6 +17,10 @@ class CoursesController < ApplicationController
     end
   end
 
+  def advance_week
+
+  end
+
   def show
   end
 
@@ -24,11 +28,9 @@ class CoursesController < ApplicationController
   end
 
   def codereviews
-
   end
 
-  def weeklysubmissions
-
+  def review_students
   end
 
   def update

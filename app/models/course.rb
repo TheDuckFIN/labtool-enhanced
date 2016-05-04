@@ -31,4 +31,8 @@ class Course < ActiveRecord::Base
     (1..weeks).to_a
   end
 
+  def next_week
+    Week.find_by course:self, number:(self.current_week.number + 1)
+  end
+
 end

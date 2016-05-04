@@ -20,9 +20,9 @@
           </a>
         </li>
 
-        <li <%= 'class="active"'.html_safe if current_page? action: 'weeklysubmissions' %>>
-          <a href="<%= weeklysubmissions_course_path @course %>">
-            <span class="glyphicon glyphicon-check"></span> Weekly submissions
+        <li <%= 'class="active"'.html_safe if current_page? action: 'review_students' %>>
+          <a href="<%= review_students_course_path @course %>">
+            <span class="glyphicon glyphicon-check"></span> Review students
           </a>
         </li>
 

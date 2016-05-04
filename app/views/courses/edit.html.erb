@@ -46,7 +46,7 @@
       <td>{{user.irc_nick}}</td>
       <td>{{user.email}}</td>
       <td>
-        <%= form_tag(addteacher_course_path @course, method: 'post') do %>
+        <%= form_tag(add_teacher_course_path @course, method: 'post') do %>
           <%= hidden_field_tag :course_id, @course.id %>
           <input type="hidden" name="user_id" id="user_id" ng-value="user.id" />
           <%= submit_tag 'Add teacher', class:'btn btn-xs btn-success' %>
