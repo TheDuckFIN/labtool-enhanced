@@ -16,9 +16,9 @@ class ParticipationsController < ApplicationController
   end
 
   def destroy
-    if @participation and (@participation.user == current_user or current_user.admin?)
+    if current_user.admin?
       @participation.destroy
-      redirect_to :back, notice: @participation.teacher? ? 'Teacher removed successfully!' : 'Successfully left the course!'
+      redirect_to :back, notice: @participation.teacher? ? 'Teacher removed successfully!' : 'User removed from course successfully!'
     else
       redirect_to :back, alert: 'No permission!'
     end

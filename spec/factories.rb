@@ -14,21 +14,33 @@ FactoryGirl.define do
   factory :course do
     leader
     sequence(:name) { |n| "Course#{n}" }
-    description 'asd'
+    description 'kuvaus'
+    irc_channel '#tkt-fuksit2015'
     active true
     registeration_open true
-    week_count 2
+    week_count 6
     current_week
     default_codereview_group
+  end
+
+  factory :participation do
+    course
+    user
+    repository 'http://www.github.com'
+    topic 'GitHub v2'
   end
 
   factory :codereview_group, aliases: [:default_codereview_group] do
     name 'Default'
   end
 
-  factory :week, aliases: [:current_week] do
+  factory :week do
     number 0
-    max_points 0
+    max_points 3
     code_review false
+
+    factory :current_week do
+      max_points 0
+    end
   end
 end

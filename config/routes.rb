@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :users
   resources :courses do
     get 'join', on: :member
+    delete 'leave', on: :member
     get 'codereviews', on: :member
     get 'review_students', on: :member
     post 'advance_week', on: :member

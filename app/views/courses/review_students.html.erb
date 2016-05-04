@@ -4,5 +4,7 @@
   The course has not begun yet!<br /><br />
   <%= link_to 'Begin course!', advance_week_course_path, method: :post, class: 'btn btn-success' %>
 <% else %>
+  <h3>Currently on week <%= @course.current_week.number %></h3>
+  <%= link_to 'Next week', advance_week_course_path, method: :post, class: 'btn btn-success' %>
 
 <% end %>

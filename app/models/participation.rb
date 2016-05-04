@@ -4,7 +4,7 @@ class Participation < ActiveRecord::Base
   belongs_to :course
   belongs_to :codereview_group
 
-  has_many :weekly_submissions
+  has_many :weekly_submissions, dependent: :destroy
 
   validates :repository, :topic, presence: true, unless: 'teacher?'
   validates :user_id, uniqueness: { scope: :course_id }

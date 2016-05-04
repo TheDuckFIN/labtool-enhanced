@@ -72,7 +72,7 @@
     <br />
 
     <% if current_user.is_participant? @course %>
-      <%= link_to 'Leave course', participation_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
+      <%= link_to 'Leave course', leave_course_path, method: :delete, class:'btn btn-danger', data: { confirm: 'Are you sure? Only do this if joining was accidental' } %>
     <% else %>
       <%= link_to 'Join course', join_course_path, class:'btn btn-success' %>
     <% end %>

@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :join, :edit, :update, :codereviews, :review_students, :advance_week]
+  before_action :set_course, only: [:show, :join, :leave, :edit, :update, :codereviews, :review_students, :advance_week]
   before_action :ensure_that_logged_in
   before_action :ensure_that_admin, only: [:new, :create, :codereviews, :reviews_tudents, :update, :edit, :add_teacher, :advance_week]
 
@@ -18,7 +18,14 @@ class CoursesController < ApplicationController
   end
 
   def advance_week
+    next_week = @course.next_week
 
+    if next_week.nil?
+      redirect_to :back, alert: 'This is the last week!'
+    else
+      @course.update_attribute(:current_week, next_week)
+      redirect_to :back, notice: "Advanced to week #{next_week.number} successfully!"
+    end
   end
 
   def show
@@ -43,6 +50,17 @@ class CoursesController < ApplicationController
 
   def join
     @participation = Participation.new
+  end
+
+  def leave
+    participation = Participation.find_by user:current_user, course:params[:id]
+
+    if participation.nil?
+      redirect_to :back, alert: 'Participation could not be found'
+    else
+      participation.destroy
+      redirect_to :back, alert: 'Successfully left the course!'
+    end
   end
 
   def new
