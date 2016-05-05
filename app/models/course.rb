@@ -3,12 +3,12 @@ class Course < ActiveRecord::Base
   attr_accessor :week_count
 
   has_many :weeks, dependent: :destroy
-  has_one :current_week, class_name: 'Week'
+  belongs_to :current_week, class_name: 'Week'
 
   has_many :real_weeks, -> { where.not number:0 }, class_name: 'Week'
 
   has_many :codereview_groups, dependent: :destroy
-  has_one :default_codereview_group, class_name: 'CodereviewGroup'
+  belongs_to :default_codereview_group, class_name: 'CodereviewGroup'
 
   has_many :participations, dependent: :destroy
   has_many :student_participations, -> { where teacher: [nil, false] }, class_name: 'Participation'
