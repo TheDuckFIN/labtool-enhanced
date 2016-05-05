@@ -19,3 +19,5 @@
 # Ignore IDE shit
 /.idea/
 /coverage/*
+
+.byebug_history

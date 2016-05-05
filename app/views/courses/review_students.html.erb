@@ -6,5 +6,9 @@
 <% else %>
   <h3>Currently on week <%= @course.current_week.number %></h3>
   <%= link_to 'Next week', advance_week_course_path, method: :post, class: 'btn btn-success' %>
+<% end %>
 
+<br><br>
+<% @course.weeks.each do |week| %>
+    Week <%= week.number %> <br />
 <% end %>
