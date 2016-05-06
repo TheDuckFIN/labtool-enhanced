@@ -71,7 +71,7 @@ describe 'Course adminstration' do
     expect(page).to have_content 'IRC channel: #tsoha'
     expect(page).to have_content 'Leader: vlakanie'
 
-    click_link 'Settings'
+    click_link 'General settings'
 
     fill_in 'course_name', with: name
     fill_in 'course_description', with: desc
