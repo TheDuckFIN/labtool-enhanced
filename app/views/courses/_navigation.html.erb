@@ -32,9 +32,15 @@
           </a>
         </li>
 
+        <li <%= 'class="active"'.html_safe if current_page? action: 'manage_weeks' %>>
+          <a href="<%= edit_course_path @course %>">
+            <span class="glyphicon glyphicon-time"></span> Manage weeks
+          </a>
+        </li>
+
         <li <%= 'class="active"'.html_safe if current_page? action: 'edit' %>>
           <a href="<%= edit_course_path @course %>">
-            <span class="glyphicon glyphicon-cog"></span> Settings
+            <span class="glyphicon glyphicon-cog"></span> General settings
           </a>
         </li>
       </ul>

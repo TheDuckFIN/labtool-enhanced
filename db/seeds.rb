@@ -10,6 +10,8 @@ end
 
 def new_course(admin, name, active=true)
   course = FactoryGirl.create :course, name:name, leader:admin, active:active, registeration_open:active
+  course.current_week = FactoryGirl.create :current_week, course:course
+  course.save
 
   (1..6).each do |i|
     FactoryGirl.create :week, course:course, number:i

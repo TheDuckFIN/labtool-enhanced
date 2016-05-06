@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     delete 'leave', on: :member
     get 'codereviews', on: :member
     get 'review_students', on: :member
+    get 'manage_weeks', on: :member
     post 'advance_week', on: :member
     post 'add_teacher', on: :member
   end

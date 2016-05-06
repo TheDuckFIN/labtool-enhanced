@@ -19,7 +19,6 @@ FactoryGirl.define do
     active true
     registeration_open true
     week_count 6
-    current_week
     default_codereview_group
   end
 

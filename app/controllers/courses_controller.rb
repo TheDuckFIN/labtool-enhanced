@@ -74,14 +74,13 @@ class CoursesController < ApplicationController
     @course.registeration_open = true
 
     if @course.save
-      @course.current_week = Week.create number: 0, max_points: 0, code_review: false
+      @course.current_week = @course.weeks.create number: 0, max_points: 0, code_review: false
 
       (1..@course.week_count.to_i).each do |number|
         @course.weeks.create number:number, max_points: 3, code_review: false
       end
 
-      group = @course.codereview_groups.create name:'Default group'
-      @course.default_codereview_group = group
+      @course.default_codereview_group  = @course.codereview_groups.create name:'Default group'
 
       @course.save
 
