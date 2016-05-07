@@ -9,11 +9,12 @@ Rails.application.routes.draw do
     post 'advance_week', on: :member
     post 'add_teacher', on: :member
 
-    resources :weeks, only: [:edit, :update]
+    resources :weeks, only: [:edit]
   end
 
-  resources :participations, only: [:create, :update, :destroy]
+  resources :weeks, only: [:update]
 
+  resources :participations, only: [:create, :update, :destroy]
 
   resource :session, only: [:new, :create, :destroy]
 
