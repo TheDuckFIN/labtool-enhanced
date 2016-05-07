@@ -13,8 +13,9 @@
       <%= render 'layouts/navigation' %>
     </header>
     <main role="main">
-       <%= render 'layouts/messages' %>
-       <%= yield %>
+      <noscript><div class="alert alert-danger" style="margin-top: 12px">This page uses javascript. Please enable javascript for full labtool experience!</div></noscript>
+      <%= render 'layouts/messages' %>
+      <%= yield %>
     </main>
   </body>
 </html>
