@@ -1,5 +1,5 @@
 class WeeksController < ApplicationController
-  before_action :set_week
+  before_action :set_course_and_week
 
   def edit
 
@@ -11,8 +11,9 @@ class WeeksController < ApplicationController
 
   private
 
-    def set_week
-      @week = Week.find_by id:params[:id]
+    def set_course_and_week
+      @week = Week.find(params[:id])
+      @course = Course.find(params[:id])
     end
 
  end

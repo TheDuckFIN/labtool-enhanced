@@ -8,11 +8,12 @@ Rails.application.routes.draw do
     get 'manage_weeks', on: :member
     post 'advance_week', on: :member
     post 'add_teacher', on: :member
+
+    resources :weeks, only: [:edit, :update]
   end
 
   resources :participations, only: [:create, :update, :destroy]
 
-  resources :weeks, only: [:edit, :update]
 
   resource :session, only: [:new, :create, :destroy]
 

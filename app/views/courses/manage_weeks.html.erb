@@ -20,7 +20,7 @@
         <td><%= week.code_review %></td>
         <td><%= week.checklist.present? %></td>
         <td>
-          <%= link_to 'Edit', edit_week_path(week), class:'btn btn-primary' %>
+          <%= link_to 'Edit', edit_course_week_path(@course, week), class:'btn btn-primary' %>
         </td>
       </tr>
   <% end %>
