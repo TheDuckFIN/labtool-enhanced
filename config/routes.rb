@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :participations, only: [:create, :update, :destroy]
 
+  resources :weeks, only: [:edit, :update]
+
   resource :session, only: [:new, :create, :destroy]
 
   get 'home', to: 'homepages#index'

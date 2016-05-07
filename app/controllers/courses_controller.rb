@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: [:show, :join, :leave, :edit, :update, :codereviews, :review_students, :advance_week]
+  before_action :set_course, only: [:show, :join, :leave, :edit, :update, :codereviews, :review_students, :advance_week, :manage_weeks]
   before_action :ensure_that_logged_in
-  before_action :ensure_that_admin, only: [:new, :create, :codereviews, :reviews_tudents, :update, :edit, :add_teacher, :advance_week]
+  before_action :ensure_that_admin, only: [:new, :create, :codereviews, :reviews_tudents, :update, :edit, :add_teacher, :advance_week, :manage_weeks]
 
   def index
     @courses = Course.active.all
@@ -38,6 +38,9 @@ class CoursesController < ApplicationController
   end
 
   def review_students
+  end
+
+  def manage_weeks
   end
 
   def update

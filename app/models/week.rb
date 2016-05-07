@@ -3,7 +3,7 @@ class Week < ActiveRecord::Base
   belongs_to :course
 
   has_many :weekly_submissions, dependent: :destroy
-  has_one :checklist
+  belongs_to :checklist
 
   validates :number, numericality: true
 

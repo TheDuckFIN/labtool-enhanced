@@ -1,14 +1,11 @@
 <%= render 'navigation' %>
 
+
 <% if @course.current_week.number == 0 %>
-  The course has not begun yet!<br /><br />
+  <h3>The course has not begun yet!</h3>
+  Starting the course will automatically close registerations. You can manually open registeration later from the course settings!<br /><br />
   <%= link_to 'Begin course!', advance_week_course_path, method: :post, class: 'btn btn-success' %>
+  <br /><br />
 <% else %>
   <h3>Currently on week <%= @course.current_week.number %></h3>
-  <%= link_to 'Next week', advance_week_course_path, method: :post, class: 'btn btn-success' %>
-<% end %>
-
-<br><br>
-<% @course.weeks.each do |week| %>
-    Week <%= week.number %> <br />
 <% end %>

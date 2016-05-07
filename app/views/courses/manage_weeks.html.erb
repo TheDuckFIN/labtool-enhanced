@@ -1,0 +1,28 @@
+<%= render 'navigation' %>
+
+<h3>List of weeks</h3>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="col-xs-2">Week</th>
+    <th class="col-xs-1">Max points</th>
+    <th class="col-xs-3">Code review?</th>
+    <th class="col-xs-3">Checklist?</th>
+    <th class="col-xs-3">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @course.real_weeks.each do |week| %>
+      <tr>
+        <td>Week <%= week.number %></td>
+        <td><%= week.max_points %></td>
+        <td><%= week.code_review %></td>
+        <td><%= week.checklist.present? %></td>
+        <td>
+          <%= link_to 'Edit', edit_week_path(week), class:'btn btn-primary' %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

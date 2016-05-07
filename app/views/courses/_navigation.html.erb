@@ -33,7 +33,7 @@
         </li>
 
         <li <%= 'class="active"'.html_safe if current_page? action: 'manage_weeks' %>>
-          <a href="<%= edit_course_path @course %>">
+          <a href="<%= manage_weeks_course_path @course %>">
             <span class="glyphicon glyphicon-time"></span> Manage weeks
           </a>
         </li>
