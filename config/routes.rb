@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     post 'add_teacher', on: :member
 
     resources :weeks, only: [:edit]
+    resources :weekly_submissions, only: [:new, :edit, :create, :update]
   end
 
   resources :weeks, only: [:update]

@@ -28,4 +28,4 @@ class WeeksController < ApplicationController
       params.require(:week).permit(:max_points)
     end
 
- end
+end

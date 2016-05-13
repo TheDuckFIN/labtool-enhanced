@@ -20,7 +20,7 @@
         </a>
       </li>
 
-      <li <%= 'class="active"'.html_safe if on_page?('courses', 'review_students') %>>
+      <li <%= 'class="active"'.html_safe if on_page?('courses', 'review_students') or on_page?('weekly_submissions', 'new') %>>
         <a href="<%= review_students_course_path @course %>">
           <span class="glyphicon glyphicon-check"></span> Review students
         </a>

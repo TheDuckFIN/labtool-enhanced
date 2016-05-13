@@ -1,6 +1,5 @@
 <%= render 'navigation' %>
 
-
 <% if @course.current_week.number == 0 %>
   <h3>The course has not begun yet!</h3>
   Starting the course will automatically close registerations. You can manually open registeration later from the course settings!<br /><br />
@@ -8,6 +7,16 @@
   <br /><br />
 <% else %>
   <h3>Currently on week <%= @course.current_week.number %></h3>
+
+  <div class="review-students-info">
+    <p>
+      On this page you can give students points for week <%= @course.current_week.number %>. Once you have reviewed all students,
+      use the button below to advance to the next week.<br />
+    </p>
+    <%= link_to 'Use review helper', '#', class:'btn btn-info' %>
+    <%= link_to "Advance to week #{@course.next_week.number}", advance_week_course_path, method: :post, class:'btn btn-success' %>
+  </div>
+
   <table class="table table-striped">
     <thead>
     <tr>
@@ -35,7 +44,7 @@
           <% if submission %>
             <%= link_to 'Edit submission', '#', class:'btn btn-primary' %>
           <% else %>
-            <%= link_to 'Review', '#', class:'btn btn-success' %>
+            <%= link_to 'Review student', new_course_weekly_submission_path(@course, participation:participation), class:'btn btn-success' %>
           <% end %>
         </td>
       </tr>
