@@ -8,4 +8,9 @@ class Week < ActiveRecord::Base
   validates :number, numericality: { greater_than_or_equal_to: 0 }
   validates :max_points, numericality: { greater_than_or_equal_to: 0 }
 
+
+  def submission_count
+    WeeklySubmission.where(week:self).count
+  end
+
 end

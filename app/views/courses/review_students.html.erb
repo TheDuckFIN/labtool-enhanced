@@ -10,11 +10,16 @@
 
   <div class="review-students-info">
     <p>
-      On this page you can give students points for week <%= @course.current_week.number %>. Once you have reviewed all students,
+      On this page you can give points for students for week <%= @course.current_week.number %>. Once you have reviewed all students,
       use the button below to advance to the next week.<br />
     </p>
-    <%= link_to 'Use review helper', '#', class:'btn btn-info' %>
-    <%= link_to "Advance to week #{@course.next_week.number}", advance_week_course_path, method: :post, class:'btn btn-success' %>
+    <p>
+      <%= link_to 'Use review helper', '#', class:'btn btn-info' %>
+      <%= link_to "Advance to week #{@course.next_week.number}", advance_week_course_path, method: :post, class:'btn btn-success' %>
+    </p>
+    <p>
+      You have currently reviewed <%= @course.current_week.submission_count %> out of <%= @course.student_participations.count %> students this week.
+    </p>
   </div>
 
   <table class="table table-striped">

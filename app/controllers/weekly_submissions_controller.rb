@@ -23,7 +23,7 @@ class WeeklySubmissionsController < ApplicationController
     if @weekly_submission.save
       redirect_to review_students_course_path(@course), notice: 'Review saved!'
     else
-      render 'edit'
+      render 'new'
     end
   end
 
