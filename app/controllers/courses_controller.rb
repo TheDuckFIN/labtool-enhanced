@@ -87,7 +87,7 @@ class CoursesController < ApplicationController
 
       @course.save
 
-      redirect_to @course, notice: "Course created successfully!"
+      redirect_to @course, notice:'Course created successfully!'
     else
       render :new
     end
