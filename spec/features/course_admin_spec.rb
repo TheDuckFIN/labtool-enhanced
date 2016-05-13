@@ -20,59 +20,51 @@ describe 'Course admin' do
     login 'vlakanie', 'lollero1'
   end
 
-  describe 'general settings' do
+  it 'editing course general info with correct information is successful' do
+    edit_course 'ohtu', 'miniprojekti jee!', '#lol'
 
-    it 'editing course general info with correct information is successful' do
-      edit_course 'ohtu', 'miniprojekti jee!', '#lol'
+    expect(page).to have_content 'Course updated successfully'
 
-      expect(page).to have_content 'Course updated successfully'
-
-      expect(page).to have_content 'ohtu'
-      expect(page).to have_content 'Description: miniprojekti jee!'
-      expect(page).to have_content 'IRC channel: #lol'
-    end
-
-    it 'editing course general info with incorrect information is unsuccessful' do
-      edit_course '', 'miniprojekti jee!', '#lol'
-
-      expect(page).to have_content "Name can't be blank"
-    end
-
-    it 'adding teacher works', js: true do
-      visit edit_course_path(@course)
-
-      expect(page).not_to have_content 'maukka'
-      expect(page).not_to have_content 'jorma'
-
-      add_teacher 'mau'
-
-      expect(page).to have_content 'maukka'
-      expect(page).not_to have_content 'jorma'
-
-      add_teacher 'jor'
-
-      expect(page).to have_content 'maukka'
-      expect(page).to have_content 'jorma'
-    end
-
-    it 'removing teacher works', js: true do
-      visit edit_course_path(@course)
-
-      expect(page).not_to have_content 'maukka'
-
-      add_teacher 'mau'
-
-      expect(page).to have_content 'maukka'
-
-      click_link 'Remove teacher'
-
-      expect(page).not_to have_content 'maukka'
-    end
-
+    expect(page).to have_content 'ohtu'
+    expect(page).to have_content 'Description: miniprojekti jee!'
+    expect(page).to have_content 'IRC channel: #lol'
   end
 
-  describe 'review students' do
+  it 'editing course general info with incorrect information is unsuccessful' do
+    edit_course '', 'miniprojekti jee!', '#lol'
 
+    expect(page).to have_content "Name can't be blank"
+  end
+
+  it 'adding teacher works', js: true do
+    visit edit_course_path(@course)
+
+    expect(page).not_to have_content 'maukka'
+    expect(page).not_to have_content 'jorma'
+
+    add_teacher 'mau'
+
+    expect(page).to have_content 'maukka'
+    expect(page).not_to have_content 'jorma'
+
+    add_teacher 'jor'
+
+    expect(page).to have_content 'maukka'
+    expect(page).to have_content 'jorma'
+  end
+
+  it 'removing teacher works', js: true do
+    visit edit_course_path(@course)
+
+    expect(page).not_to have_content 'maukka'
+
+    add_teacher 'mau'
+
+    expect(page).to have_content 'maukka'
+
+    click_link 'Remove teacher'
+
+    expect(page).not_to have_content 'maukka'
   end
 
 end
