@@ -35,16 +35,22 @@ class User < ActiveRecord::Base
     participation = Participation.where user:self, course:course
 
     course.real_weeks.each do |week|
-      submission = WeeklySubmission.where participation:participation, week:week
+      submission = WeeklySubmission.find_by participation:participation, week:week
 
-      if submission.any?
-        points << "#{submission.first.points} / #{week.max_points}"
+      if submission.present?
+        points << "#{submission.points} / #{week.max_points}"
       else
         points << "- / #{week.max_points}"
       end
     end
 
     points
+  end
+
+  def submission_for_week(course, week)
+    participation = Participation.where user:self, course:course
+
+    WeeklySubmission.find_by participation:participation, week:week
   end
 
 end

@@ -8,4 +8,38 @@
   <br /><br />
 <% else %>
   <h3>Currently on week <%= @course.current_week.number %></h3>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th class="col-xs-3">Student</th>
+      <th class="col-xs-3">Assigned teacher</th>
+      <th class="col-xs-2">Submission status</th>
+      <th class="col-xs-4">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @course.student_participations.each do |participation| %>
+      <% submission = participation.user.submission_for_week(@course, @course.current_week) %>
+      <tr>
+        <td><%= link_to participation.user.format_name(true), participation.user %></td>
+        <td>To be implemented</td>
+        <td>
+          <% if submission %>
+            <span class="label label-success">Points given: <%= submission.points %></span>
+          <% else %>
+            <span class="label label-danger">Not reviewed</span>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to 'Repository', participation.repository, class:'btn btn-warning' %>
+          <% if submission %>
+            <%= link_to 'Edit submission', '#', class:'btn btn-primary' %>
+          <% else %>
+            <%= link_to 'Review', '#', class:'btn btn-success' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 <% end %>
