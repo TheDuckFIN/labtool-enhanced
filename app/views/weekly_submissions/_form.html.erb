@@ -1,0 +1,13 @@
+<%= form_for [@course, @weekly_submission] do |f| %>
+    <%= hidden_field_tag :participation_id, @weekly_submission.participation_id %>
+
+    <div class="form-group">
+      <%= f.label :points, value:"Points (max #{@course.current_week.max_points})" %>
+      <%= f.number_field :points, class:'form-control', min:'0', step:'0.1', max:@course.current_week.max_points %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit class:'btn btn-success' %>
+      <%= link_to 'View repository', @weekly_submission.participation.repository, class:'btn btn-warning', target:'_blank' %>
+    </div>
+<% end %>

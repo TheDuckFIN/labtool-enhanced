@@ -2,20 +2,4 @@
 
 <h3>Reviewing <%= @weekly_submission.participation.user.username %>'s submission for week <%= @course.current_week.number %> of <%= @course.name %></h3>
 
-<%= link_to 'Repository', @weekly_submission.participation.repository, class:'btn btn-warning' %>
-
-<br /><br />
-
-<%= form_for [@course, @weekly_submission] do |f| %>
-  <%= hidden_field_tag :participation_id, @weekly_submission.participation_id %>
-
-  <div class="form-group">
-    <%= f.label :points %>
-    <%= f.number_field :points, class:'form-control', min:'0', step:'0.1' %>
-  </div>
-
-  <div class="form-group">
-    <%= f.submit class:'btn btn-success' %>
-  </div>
-
-<% end %>
+<%= render 'form' %>

@@ -1,0 +1,5 @@
+<%= render 'courses/navigation' %>
+
+<h3>Editing review of <%= @weekly_submission.participation.user.username %>'s submission for week <%= @course.current_week.number %> of <%= @course.name %></h3>
+
+<%= render 'form' %>
