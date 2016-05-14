@@ -30,6 +30,8 @@ gem 'bootstrap-sass'
 
 gem 'validate_url'
 
+gem 'ngannotate-rails'
+
 gem 'angularjs-rails'
 
 gem 'coveralls', require: false
