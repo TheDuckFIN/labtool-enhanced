@@ -7,6 +7,8 @@ describe 'Course admin' do
     FactoryGirl.create :user, username:'jorma'
 
     @course = FactoryGirl.create :course, name:'tsoha', description:'kiva kurssi', irc_channel:'#tsoha', leader:leader
+    @course.current_week = FactoryGirl.create :current_week, course:@course
+    @course.save
 
     (1..6).each do |i|
       FactoryGirl.create :week, course:@course, number:i
@@ -67,6 +69,68 @@ describe 'Course admin' do
     expect(page).not_to have_content 'maukka'
   end
 
+  it 'giving a review works' do
+    visit review_students_course_path(@course)
+
+    click_link 'Begin course'
+
+    expect(page).not_to have_content 'Points given: 2.0'
+    expect(WeeklySubmission.count).to eq(0)
+
+    table_row(3).click_link 'Review student'
+
+    fill_in 'weekly_submission_points', with: '2.0'
+
+    click_button 'Create Weekly submission'
+
+    expect(table_row(1)).to have_content 'Not reviewed'
+    expect(table_row(2)).to have_content 'Not reviewed'
+    expect(table_row(3)).to have_content 'Points given: 2.0'
+    expect(WeeklySubmission.count).to eq(1)
+  end
+
+  it 'editing a review works' do
+    visit review_students_course_path(@course)
+
+    click_link 'Begin course'
+
+    expect(table_row(2)).to have_content 'Not reviewed'
+
+    table_row(2).click_link 'Review student'
+    fill_in 'weekly_submission_points', with: '2.0'
+    click_button 'Create Weekly submission'
+
+    expect(table_row(2)).to have_content 'Points given: 2.0'
+
+    table_row(2).click_link 'Edit submission'
+    fill_in 'weekly_submission_points', with: '2.5'
+    click_button 'Update Weekly submission'
+
+    expect(table_row(2)).to have_content 'Points given: 2.5'
+  end
+
+  it 'editing week works' do
+    visit manage_weeks_course_path(@course)
+
+    expect(table_row(3).find('td:nth-child(2)')).to have_content '3'
+
+    table_row(3).click_link 'Edit'
+    fill_in 'week_max_points', with:'5'
+    click_button 'Update Week'
+
+    expect(table_row(3).find('td:nth-child(2)')).to have_content '5'
+
+    table_row(3).click_link 'Edit'
+    fill_in 'week_max_points', with:'-1'
+    click_button 'Update Week'
+
+    expect(page).to have_content 'Max points must be greater than or equal to 0'
+  end
+
+end
+
+def table_row(number)
+  find('tbody').find("tr:nth-child(#{number})")
 end
 
 

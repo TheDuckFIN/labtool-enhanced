@@ -4,6 +4,7 @@ class WeeklySubmission < ActiveRecord::Base
   belongs_to :week
 
   validate :points_must_not_exceed_week_maximum
+  validates :points, numericality: { greater_than_or_equal_to: 0 }
 
 
   def points_must_not_exceed_week_maximum
