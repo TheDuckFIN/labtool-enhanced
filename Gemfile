@@ -36,6 +36,8 @@ gem 'angularjs-rails'
 
 gem 'coveralls', require: false
 
+gem 'factory_girl_rails'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -45,7 +47,7 @@ gem 'coveralls', require: false
 group :test do
   gem 'simplecov', require: false
 
-  gem 'factory_girl_rails'
+  #gem 'factory_girl_rails'
 
   gem 'capybara'
 
